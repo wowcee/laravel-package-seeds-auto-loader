@@ -66,6 +66,6 @@ A Laravel service provider used for automatically register seeds in a package wh
 
         php artisan db:seed
 
-Or:
+Or with '--seed' option:
 
         php artisan migrate:refresh --seed
