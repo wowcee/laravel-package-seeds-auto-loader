@@ -1,10 +1,10 @@
 # Seed Service Provider for Laravel Package
 
-This is a Laravel service provider used for automatically register seeds in a package when call a seeding command in console (e.g. db:seed, migrate:refresh --seed, ...)
+A Laravel service provider used for automatically register seeds in a package when call a seeding command in console (e.g. db:seed, migrate:refresh --seed, ...)
 
 ## Usage:
 
-Always using in boot() method of the main sevice provider of package.
+Always using in boot() method of the main sevice provider of package:
 
 
     class MyPackageServiceProvider extends ServiceProvider
@@ -34,3 +34,12 @@ Always using in boot() method of the main sevice provider of package.
             //
         }
     }
+
+
+Work with all seeding commands:
+
+        php artisan db:seed
+
+Or:
+
+        php artisan migrate:refresh --seed
