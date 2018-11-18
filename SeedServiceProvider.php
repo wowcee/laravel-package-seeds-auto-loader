@@ -57,7 +57,7 @@ class SeedServiceProvider extends ServiceProvider
         Event::listen(CommandFinished::class, function(CommandFinished $event) {
             // Accept command in console only,
             // exclude all commands from Artisan::call() method.
-            if (is_a($event->output, ConsoleOutput::class)) {
+            if ($event->output instanceof ConsoleOutput) {
                 $this->addSeedsFrom(__DIR__ . $this->seeds_path);
             }
         });
