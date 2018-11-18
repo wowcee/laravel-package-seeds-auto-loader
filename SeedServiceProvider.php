@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 class SeedServiceProvider extends ServiceProvider
 {
-    private $seeds_path = '/../database/seeds';
+    protected $seeds_path = '/../database/seeds';
 
 
     /**
@@ -22,7 +22,7 @@ class SeedServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            if ($this->isConsoleCommandContains([ 'db:seed', '--seed' ])) {
+            if ($this->isConsoleCommandContains([ 'db:seed', '--seed' ], '--class')) {
                 $this->addSeedsAfterConsoleCommandFinished();
             }
         }
@@ -32,16 +32,17 @@ class SeedServiceProvider extends ServiceProvider
      * Get a value that indicates whether the current command in console
      * contains a string in the specified $fields.
      *
-     * @param  string|array $fields
+     * @param string|array $fields
+     * @param string|array $exclude_options
      *
      * @return bool
      */
-    private function isConsoleCommandContains($fields) : bool
+    protected function isConsoleCommandContains($fields, $exclude_options = null) : bool
     {
         $args = Request::server('argv', null);
         if (is_array($args)) {
             $command = implode(' ', $args);
-            if (str_contains($command, $fields)) {
+            if (str_contains($command, $fields) && ($exclude_options == null || !str_contains($command, $exclude_options))) {
                 return true;
             }
         }
@@ -51,7 +52,7 @@ class SeedServiceProvider extends ServiceProvider
     /**
      * Add seeds from the $seed_path after the current command in console finished.
      */
-    private function addSeedsAfterConsoleCommandFinished()
+    protected function addSeedsAfterConsoleCommandFinished()
     {
         Event::listen(CommandFinished::class, function(CommandFinished $event) {
             // Accept command in console only,
