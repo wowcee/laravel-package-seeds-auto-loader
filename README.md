@@ -31,7 +31,7 @@ A Laravel service provider used for automatically register seeds in a package wh
             ...
         }
 
-3. Always using in boot() method of the main package sevice provider:
+3. Always using in boot() method of your main package sevice provider:
 
         class MyPackageServiceProvider extends ServiceProvider
         {
@@ -63,9 +63,13 @@ A Laravel service provider used for automatically register seeds in a package wh
 
 
 ## Usage:
+All seed files in your $seed_path will autoload with these commands:
 
         php artisan db:seed
 
 Or with '--seed' option:
 
         php artisan migrate:refresh --seed
+
+## Note:
+For favourable, the SeedServiceProvider will be disabled when execute "db:seed" command with "--class" option. This allow you specifies which one of seed you want to use insteads of all package's seeds could be automatically added also.
