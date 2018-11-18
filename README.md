@@ -26,7 +26,7 @@ A Laravel service provider used for automatically register seeds in a package wh
 
         class SeedServiceProvider extends ServiceProvider
         {
-            private $seeds_path = '/../database/seeds';
+            protected $seeds_path = '/../database/seeds';
             
             ...
         }
@@ -63,7 +63,7 @@ A Laravel service provider used for automatically register seeds in a package wh
 
 
 ## Usage:
-All seed files in your $seed_path will autoload with these commands:
+All seed files in your $seed_path will autoload with this command:
 
         php artisan db:seed
 
