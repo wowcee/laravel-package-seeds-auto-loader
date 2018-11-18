@@ -22,7 +22,7 @@ class SeedServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            if ($this->isConsoleCommandContains([ 'db:seed', '--seed' ], '--class')) {
+            if ($this->isConsoleCommandContains([ 'db:seed', '--seed' ], [ '--class', 'help', '-h' ])) {
                 $this->addSeedsAfterConsoleCommandFinished();
             }
         }
@@ -32,17 +32,17 @@ class SeedServiceProvider extends ServiceProvider
      * Get a value that indicates whether the current command in console
      * contains a string in the specified $fields.
      *
-     * @param string|array $fields
+     * @param string|array $contain_options
      * @param string|array $exclude_options
      *
      * @return bool
      */
-    protected function isConsoleCommandContains($fields, $exclude_options = null) : bool
+    protected function isConsoleCommandContains($contain_options, $exclude_options = null) : bool
     {
         $args = Request::server('argv', null);
         if (is_array($args)) {
             $command = implode(' ', $args);
-            if (str_contains($command, $fields) && ($exclude_options == null || !str_contains($command, $exclude_options))) {
+            if (str_contains($command, $contain_options) && ($exclude_options == null || !str_contains($command, $exclude_options))) {
                 return true;
             }
         }
