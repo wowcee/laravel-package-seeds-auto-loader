@@ -22,7 +22,11 @@ A Laravel service provider used for automatically register seeds in a package wh
             |-- ...
 
 
-2. Specifies a path to your seeds folder in SeedServiceProvider.php
+2. With above directory structure, your path of seeds will like this:
+
+        "/../database/seeds"
+         
+   You need to set this path in the SeedServiceProvider.php file:
 
         class SeedServiceProvider extends ServiceProvider
         {
