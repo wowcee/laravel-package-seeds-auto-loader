@@ -22,7 +22,7 @@ A Laravel service provider used for automatically register seeds in a package wh
             |-- ...
 
 
-2. Specifies a path to seeds folder in SeedServiceProvider.php
+2. Specifies a path to your seeds folder in SeedServiceProvider.php
 
         class SeedServiceProvider extends ServiceProvider
         {
@@ -31,7 +31,7 @@ A Laravel service provider used for automatically register seeds in a package wh
             ...
         }
 
-3. Always using in boot() method of your main package sevice provider:
+3. Register SeedServiceProvider class in the boot() method of your package sevice provider:
 
         class MyPackageServiceProvider extends ServiceProvider
         {
