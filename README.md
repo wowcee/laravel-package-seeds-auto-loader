@@ -17,7 +17,8 @@ A Laravel service provider used for automatically register seeds in a package wh
                 |-- migrates
                     |-- ...
                 |-- seeds
-                    |-- MyTableSeeder.php
+                    |-- FooSeeder.php
+                    |-- BarSeeder.php
                     |-- ...
             |-- ...
 
@@ -76,4 +77,4 @@ Or with '--seed' option:
         php artisan migrate:refresh --seed
 
 ## Note:
-For favourable, the SeedServiceProvider will be disabled when execute "db:seed" command with "--class" option. This allow you specifies which one of seed you want to use insteads of all package's seeds could be automatically added also.
+For favourable, the SeedServiceProvider will be ignored when execute "db:seed" command with "--class" option. This allow you specifies which one of seed you want to use insteads of all package's seeds could be automatically added also.
