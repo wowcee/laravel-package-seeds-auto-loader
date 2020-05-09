@@ -43,7 +43,10 @@ class SeedServiceProvider extends ServiceProvider
         $args = Request::server('argv', null);
         if (is_array($args)) {
             $command = implode(' ', $args);
-            if (Str::contains($command, $contain_options) && ($exclude_options == null || ! Str::contains($command, $exclude_options))) {
+            if (
+                Str::contains($command, $contain_options) &&
+                ($exclude_options == null || !Str::contains($command, $exclude_options))
+            ) {
                 return true;
             }
         }
