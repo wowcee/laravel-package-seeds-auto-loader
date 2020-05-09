@@ -76,7 +76,11 @@ class SeedServiceProvider extends ServiceProvider
         {
             $classes = $this->getClassesFromFile($filename);
             foreach ($classes as $class) {
-                Artisan::call('db:seed', [ '--class' => $class, '--force' => '' ]);
+                echo "\033[1;33mSeeding:\033[0m {$class}\n";
+                $startTime = microtime(true);
+                Artisan::call('db:seed', ['--class' => $class, '--force' => '']);
+                $runTime = round(microtime(true) - $startTime, 2);
+                echo "\033[0;32mSeeded:\033[0m {$class} ({$runTime} seconds)\n";
             }
         }
     }
